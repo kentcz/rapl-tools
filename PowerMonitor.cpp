@@ -53,6 +53,7 @@ int main(int argc, char *argv[]) {
 		if (use_outfile) {
 			outfile << rapl->pkg_current_power() << ","
 					<< rapl->pp0_current_power() << ","
+					<< rapl->pp1_current_power() << ","
 					<< rapl->dram_current_power() << ","
 					<< rapl->total_time() << endl;
 		}

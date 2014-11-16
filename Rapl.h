@@ -7,6 +7,7 @@
 struct rapl_state_t {
 	uint64_t pkg;
 	uint64_t pp0;
+	uint64_t pp1;
 	uint64_t dram;
 	struct timeval tsc;
 };
@@ -17,6 +18,7 @@ private:
 	// Rapl configuration
 	int fd;
 	int core = 0;
+	bool pp1_supported = true;
 	double power_units, energy_units, time_units;
 	double thermal_spec_power, minimum_power, maximum_power, time_window;
 
@@ -26,6 +28,7 @@ private:
 	rapl_state_t *next_state;
 	rapl_state_t state1, state2, state3, running_total;
 
+	bool detect_pp1();
 	void open_msr();
 	uint64_t read_msr(int msr_offset);
 	double time_delta(struct timeval *begin, struct timeval *after);
@@ -39,14 +42,17 @@ public:
 
 	double pkg_current_power();
 	double pp0_current_power();
+	double pp1_current_power();
 	double dram_current_power();
 
 	double pkg_average_power();
 	double pp0_average_power();
+	double pp1_average_power();
 	double dram_average_power();
 
 	double pkg_total_energy();
 	double pp0_total_energy();
+	double pp1_total_energy();
 	double dram_total_energy();
 
 	double total_time();

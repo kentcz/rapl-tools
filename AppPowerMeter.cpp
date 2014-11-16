@@ -37,6 +37,7 @@ int main(int argc, char *argv[]) {
 				rapl->sample();
 				outfile << rapl->pkg_current_power() << ","
 					<< rapl->pp0_current_power() << ","
+					<< rapl->pp1_current_power() << ","
 					<< rapl->dram_current_power() << ","
 					<< rapl->total_time() << std::endl;
 
