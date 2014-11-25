@@ -27,4 +27,21 @@ The project is built with Gnu Make. G++ >= 4.7 is required.
 make
 ```
 
+Setup on Ubuntu
+-------
+Before using the tools, you will need to load the msr module and adjust the permissions.
 
+```
+# Install and load the msr module
+sudo apt-get install msr-tools
+sudo modprobe msr
+
+# Set permissions
+sudo chmod o+rw /dev/cpu/0/msr
+```
+Recent versions of the linux kernel require special permission to access the msr.
+```
+sudo apt-get install libcap2-bin
+sudo setcap cap_sys_rawio+ep ./AppPowerMeter
+sudo setcap cap_sys_rawio+ep ./PowerMonitor
+```
